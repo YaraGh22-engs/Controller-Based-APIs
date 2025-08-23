@@ -1,0 +1,11 @@
+@Controller_Based_APIs_HostAddress = http://localhost:5165
+
+GET {{Controller_Based_APIs_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{Controller_Based_APIs_HostAddress}}/api/products/
+Accept: application/json
+
+###
