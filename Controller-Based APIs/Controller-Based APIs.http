@@ -2,9 +2,5 @@
 
 
 
-###
-
-GET {{Controller_Based_APIs_HostAddress}}/api/products/
-Accept: application/json
-
-###
+### Options 
+OPTIONS {{Controller_Based_APIs_HostAddress}}/api/products

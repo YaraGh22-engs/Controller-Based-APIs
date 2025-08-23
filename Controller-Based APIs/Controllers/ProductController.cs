@@ -7,10 +7,11 @@ namespace Controller_Based_APIs.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        [HttpGet]
-        public string Get()
+        [HttpOptions]
+        public IActionResult OptionsProducts()
         {
-            return " Product #1 , Price $2.99 ";
+            Response.Headers.Append("Allow", "GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS");
+            return NoContent();
         }
     }
 }
