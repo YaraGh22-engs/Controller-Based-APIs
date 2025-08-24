@@ -87,5 +87,25 @@ namespace Controller_Based_APIs.Controllers
                                   value: ProductResponse.FromModel(product));
         }
 
+
+        [HttpPut("{productId:guid}")]
+        public IActionResult Put(Guid productId, UpdateProductRequest request)
+        {
+            var product = repository.GetProductById(productId);
+
+            if (product is null)
+                return NotFound($"Product with Id '{productId}' not found");
+
+            product.Name = request.Name;
+            product.Price = request.Price ?? 0;
+
+            var succeeded = repository.UpdateProduct(product);
+
+            if (!succeeded)
+                return StatusCode(500, "Failed to update product");
+
+            return NoContent();
+        }
+
     }
 }
