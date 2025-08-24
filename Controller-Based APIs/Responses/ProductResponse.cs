@@ -37,4 +37,5 @@ public class ProductResponse
 
         return products.Select(p => FromModel(p));
     }
+
 }

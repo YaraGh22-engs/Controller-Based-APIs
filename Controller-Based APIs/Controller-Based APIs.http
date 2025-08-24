@@ -9,3 +9,5 @@ OPTIONS {{Controller_Based_APIs_HostAddress}}/api/products
 
 ### 
 HEAD {{Controller_Based_APIs_HostAddress}}/api/products/{{productId}}
+###
+GET  {{Controller_Based_APIs_HostAddress}}/api/products/{{productId}}?includeReviews=true
