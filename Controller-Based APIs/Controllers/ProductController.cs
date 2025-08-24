@@ -3,6 +3,7 @@ using Controller_Based_APIs.Models;
 using Controller_Based_APIs.Requests;
 using Controller_Based_APIs.Responses;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Controller_Based_APIs.Controllers
@@ -106,6 +107,37 @@ namespace Controller_Based_APIs.Controllers
 
             return NoContent();
         }
+
+        [HttpPatch("{productId:guid}")]
+        public IActionResult Patch(Guid productId, JsonPatchDocument<UpdateProductRequest>? patchDoc)
+        {
+            if (patchDoc is null)
+                return BadRequest("Invalid patch document.");
+
+            var product = repository.GetProductById(productId);
+
+            if (product is null)
+                return NotFound($"Product with Id '{productId}' not found.");
+
+            var updateModel = new UpdateProductRequest
+            {
+                Name = product.Name,
+                Price = product.Price
+            };
+
+            patchDoc.ApplyTo(updateModel);
+
+            product.Name = updateModel.Name;
+            product.Price = updateModel.Price ?? 0;
+
+            var succeeded = repository.UpdateProduct(product);
+
+            if (!succeeded)
+                return StatusCode(500, "Failed to patch product");
+
+            return NoContent();
+        }
+
 
     }
 }
