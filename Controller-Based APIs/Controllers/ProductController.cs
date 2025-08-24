@@ -25,7 +25,7 @@ namespace Controller_Based_APIs.Controllers
         {
             return repository.ExistsById(productId) ? Ok() : NotFound();
         }
-        [HttpGet]
+       
         
 
         [HttpGet("{productId:guid}", Name = "GetProductById")]
@@ -44,6 +44,26 @@ namespace Controller_Based_APIs.Controllers
             }
 
             return ProductResponse.FromModel(product, reviews);
+        }
+
+
+        [HttpGet]
+        public IActionResult GetPaged(int page = 1, int pageSize = 10)
+        {
+            page = Math.Max(1, page);
+            pageSize = Math.Clamp(pageSize, 1, 100);
+
+            int totalCount = repository.GetProductsCount();
+
+            var products = repository.GetProductsPage(page, pageSize);
+
+            var pagedResult = PagedResult<ProductResponse>.Create(
+                ProductResponse.FromModels(products),
+                totalCount,
+                page,
+                pageSize);
+
+            return Ok(pagedResult);
         }
     }
 }
