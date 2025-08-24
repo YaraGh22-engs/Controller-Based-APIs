@@ -211,5 +211,19 @@ namespace Controller_Based_APIs.Controllers
             return Ok(new { message = "You're in the temp endpoint. Chill." });
         }
 
+        [HttpGet("legacy-products")]
+        public IActionResult GetPermanentRedirect()
+        {
+            return RedirectPermanent("/api/products/product-catalog");
+        }
+
+        [HttpGet("product-catalog")]
+        public IActionResult Catalog()
+        {
+            return Ok(new { message = "This is the permanent new location." });
+        }
     }
+
+
 }
+

@@ -67,3 +67,6 @@ GET {{Controller_Based_APIs_HostAddress}}/api/products/physical-csv-file
 
 ###
 GET {{Controller_Based_APIs_HostAddress}}/api/products/products-legacy
+
+###
+GET  {{Controller_Based_APIs_HostAddress}}/api/products/legacy-products
