@@ -61,3 +61,7 @@ GET {{Controller_Based_APIs_HostAddress}}/api/products/status/{{JobId}}
 GET {{Controller_Based_APIs_HostAddress}}/api/products/csv
 
 
+###
+GET {{Controller_Based_APIs_HostAddress}}/api/products/physical-csv-file
+
+

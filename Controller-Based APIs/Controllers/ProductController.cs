@@ -191,6 +191,14 @@ namespace Controller_Based_APIs.Controllers
             return File(fileBytes, "text/csv", "product-catalog_1_100.csv");
         }
 
+        [HttpGet("physical-csv-file")]
+        public IActionResult GetPhysicalFile()
+        {
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Files", "products.csv");
+
+            return PhysicalFile(filePath, "text/csv", "products-export.csv");
+        }
+
 
 
     }
