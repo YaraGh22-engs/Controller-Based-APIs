@@ -57,3 +57,7 @@ POST {{Controller_Based_APIs_HostAddress}}/api/products/process
 ###
 GET {{Controller_Based_APIs_HostAddress}}/api/products/status/{{JobId}}
 
+### GET
+GET {{Controller_Based_APIs_HostAddress}}/api/products/csv
+
+

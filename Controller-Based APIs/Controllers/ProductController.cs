@@ -5,6 +5,7 @@ using Controller_Based_APIs.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 namespace Controller_Based_APIs.Controllers
 {
@@ -172,6 +173,23 @@ namespace Controller_Based_APIs.Controllers
         }
 
 
+        [HttpGet("csv")]
+        public IActionResult GetProductsCSV()
+        {
+            var products = repository.GetProductsPage(1, 100);
+
+            var csvBuilder = new StringBuilder();
+            csvBuilder.AppendLine("Id,Name,Price");
+
+            foreach (var p in products)
+            {
+                csvBuilder.AppendLine($"{p.Id},{p.Name},{p.Price}");
+            }
+
+            var fileBytes = Encoding.UTF8.GetBytes(csvBuilder.ToString());
+
+            return File(fileBytes, "text/csv", "product-catalog_1_100.csv");
+        }
 
 
 
