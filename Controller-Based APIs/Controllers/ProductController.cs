@@ -138,6 +138,21 @@ namespace Controller_Based_APIs.Controllers
             return NoContent();
         }
 
+        [HttpDelete("{productId:guid}")]
+        public IActionResult Delete(Guid productId)
+        {
+            if (!repository.ExistsById(productId))
+                return NotFound($"Product with Id '{productId}' not found");
+
+            var succeeded = repository.DeleteProduct(productId);
+
+            if (!succeeded)
+                return StatusCode(500, "Failed to update product");
+
+            return NoContent();
+        }
+
+
 
     }
 }

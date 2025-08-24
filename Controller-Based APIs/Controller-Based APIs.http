@@ -12,6 +12,7 @@ HEAD {{Controller_Based_APIs_HostAddress}}/api/products/{{productId}}
 ###
 GET  {{Controller_Based_APIs_HostAddress}}/api/products/{{productId}}
 
+###
 GET  {{Controller_Based_APIs_HostAddress}}/api/products/{{productId}}?includeReviews=true
 ###
 GET {{Controller_Based_APIs_HostAddress}}/api/products?page=1&pageSize=100
@@ -32,6 +33,7 @@ Content-Type: application/json
     "name": "chocolate bar",
     "price": 4.50
 }
+
 ###
 PATCH  {{Controller_Based_APIs_HostAddress}}/api/products/{{productId}} 
 Content-Type: application/json-patch+json
@@ -43,3 +45,6 @@ Content-Type: application/json-patch+json
     "value": 35.99
   },
 ]
+
+### DELETE
+DELETE  {{Controller_Based_APIs_HostAddress}}/api/products/{{productId}}
