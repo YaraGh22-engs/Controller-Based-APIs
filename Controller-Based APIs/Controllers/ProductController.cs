@@ -199,7 +199,17 @@ namespace Controller_Based_APIs.Controllers
             return PhysicalFile(filePath, "text/csv", "products-export.csv");
         }
 
+        [HttpGet("products-legacy")]
+        public IActionResult GetRedirect()
+        {
+            return Redirect("/api/products/temp-products");
+        }
 
+        [HttpGet("temp-products")]
+        public IActionResult TempProducts()
+        {
+            return Ok(new { message = "You're in the temp endpoint. Chill." });
+        }
 
     }
 }
