@@ -13,3 +13,11 @@ HEAD {{Controller_Based_APIs_HostAddress}}/api/products/{{productId}}
 GET  {{Controller_Based_APIs_HostAddress}}/api/products/{{productId}}?includeReviews=true
 ###
 GET {{Controller_Based_APIs_HostAddress}}/api/products?page=1&pageSize=100
+
+###
+POST {{Controller_Based_APIs_HostAddress}}/api/products
+Content-Type: application/json
+{
+  "name":"saass",
+  "price": 1.99
+}

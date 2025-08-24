@@ -1,5 +1,6 @@
 ﻿using Controller_Based_APIs.Data;
 using Controller_Based_APIs.Models;
+using Controller_Based_APIs.Requests;
 using Controller_Based_APIs.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -65,5 +66,26 @@ namespace Controller_Based_APIs.Controllers
 
             return Ok(pagedResult);
         }
+
+        [HttpPost]
+        public IActionResult CreateProduct(CreateProductRequest request)
+        {
+            if (repository.ExistsByName(request.Name))
+                return Conflict($"A product with the name '{request.Name}' already exists.");
+
+            var product = new Product
+            {
+                Id = Guid.NewGuid(),
+                Name = request.Name,
+                Price = request.Price
+            };
+
+            repository.AddProduct(product);
+
+            return CreatedAtRoute(routeName: nameof(GetProductById),
+                                  routeValues: new { productId = product.Id },
+                                  value: ProductResponse.FromModel(product));
+        }
+
     }
 }
