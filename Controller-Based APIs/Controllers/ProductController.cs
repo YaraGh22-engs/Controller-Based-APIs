@@ -152,6 +152,27 @@ namespace Controller_Based_APIs.Controllers
             return NoContent();
         }
 
+        [HttpPost("process")]
+        public IActionResult ProcessAsync()
+        {
+            var jobId = Guid.NewGuid();
+
+            return Accepted(
+                $"/api/products/status/{jobId}",
+                new { jobId, status = "Processing" }
+            );
+        }
+
+        [HttpGet("status/{JobId}")]
+        public IActionResult GetProcessingStatus(Guid JobId)
+        {
+            var isStillProcessing = false; // fake it
+
+            return Ok(new { JobId, status = isStillProcessing ? "Processing" : "Completed" });
+        }
+
+
+
 
 
     }

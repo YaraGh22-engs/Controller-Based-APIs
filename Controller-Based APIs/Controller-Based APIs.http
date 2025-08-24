@@ -2,7 +2,7 @@
 
 
 @productId = 2779ee47-10b0-4bd7-8342-404006aa1392
-
+@JobId = 0dd4bcf4-98af-4b69-b8d5-57b254872987
 
 ### Options 
 OPTIONS {{Controller_Based_APIs_HostAddress}}/api/products
@@ -48,3 +48,12 @@ Content-Type: application/json-patch+json
 
 ### DELETE
 DELETE  {{Controller_Based_APIs_HostAddress}}/api/products/{{productId}}
+
+  
+###
+POST {{Controller_Based_APIs_HostAddress}}/api/products/process
+##
+
+###
+GET {{Controller_Based_APIs_HostAddress}}/api/products/status/{{JobId}}
+
